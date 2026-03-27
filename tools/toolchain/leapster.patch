@@ -1,0 +1,24 @@
+--- ./gcc/config/arc/arc.cc	2026-03-24 16:17:55.309310854 -0500
++++ ./gcc/config/arc/arc.cc	2026-03-24 16:18:08.553334904 -0500
+@@ -1833,7 +1833,7 @@
+ 	 this way, we don't have to carry clobbers of that reg around in every
+ 	 isntruction that modifies mlo and/or mhi.  */
+       strcpy (rname57, "");
+-      strcpy (rname58, "mlo");
++      strcpy (rname58, "mmid");
+       strcpy (rname59, "mhi");
+     }
+ 
+--- ./gcc/config/arc/arc.h	2026-03-24 16:18:03.158768401 -0500
++++ ./gcc/config/arc/arc.h	2026-03-24 16:19:00.416668253 -0500
+@@ -1358,8 +1358,8 @@
+    ? ((REGNO) ^ !TARGET_BIG_ENDIAN)				\
+    : (TARGET_MUL64_SET && (REGNO) >= 57 && (REGNO) <= 58)	\
+    ? (((REGNO) == 57)						\
+-      ? 58 /* MMED */						\
+-      : 57 + !!TARGET_MULMAC_32BY16_SET) /* MLO */		\
++      ? 57 /* MMED */						\
++      : 58 + !!TARGET_MULMAC_32BY16_SET) /* MLO */		\
+    : (REGNO))
+ 
+ /* Use gcc hard register numbering for eh_frame.  */
